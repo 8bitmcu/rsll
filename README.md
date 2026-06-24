@@ -2,6 +2,8 @@
 
 **rsll** is a live MIDI looper with a terminal UI, written in Rust. It connects to your MIDI controller over JACK, records what you play into looping tracks, and plays everything back through a software synth such as FluidSynth or sfizz. Everything is driven from the controller itself — arm a track, punch in, layer loops, switch scenes — so you can keep your hands on the keys while the TUI gives you live feedback on tracks, recording state, and the master clock.
 
+![assets/preview.png](assets/preview.png)
+
 ## Features ✨
 
 - 🔁 **Multi-track looping** — record and overdub up to 8 independent tracks, each with its own MIDI channel, program (instrument), volume, and loop length
