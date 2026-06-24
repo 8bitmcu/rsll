@@ -1,0 +1,93 @@
+# =============================================================================
+# Hardware Configuration — MIDI port patterns and controller key bindings
+# =============================================================================
+# This file describes the physical MIDI hardware: which ports to connect to
+# and which CC numbers are mapped to looper control functions.
+# Edit this file to match your specific MIDI controller.
+
+[device]
+client_name = "rsll"
+
+[ports]
+# Regex patterns for output ports to send to (first match wins)
+out = [
+    ".*FLUID Synth.*Synth input.*",
+]
+
+# Input ports: one thread spawned per entry. Use exclude_channels (1-indexed) to
+# drop echoed messages from ports that mirror another port's data.
+[[ports.in]]
+pattern = ".*MPK mini IV:.*MIDI Port.*"
+
+[[ports.in]]
+pattern = ".*MPK mini IV:.*DAW Port.*"
+exclude_channels = [10]  # DAW port echoes pad CCs on Ch 10 — drop them to prevent double-trigger
+
+# -----------------------------------------------------------------------------
+# Key bindings — format: CC<number>  (e.g. CC11, CC76)
+# -----------------------------------------------------------------------------
+
+[leds]
+# Output port to send LED feedback to the controller (typically the DAW port)
+out = [".*MPK mini IV:.*DAW Port.*"]
+on_channel = 3    # Note On on this channel (1-indexed) lights the LED
+off_channel = 1   # Note On on this channel (1-indexed) extinguishes the LED
+blink_channel = 8 # Note On on this channel (1-indexed) triggers LED blink (armed state)
+
+[metronome]
+key = "CC11"
+led_note = 11    # Note number used to control this button's LED
+downbeat_note = 76
+subdivision_note = 77
+velocity = 80
+channel = 9 # (Ch 10)
+
+[clear_track]
+key = "CC76"
+
+[undo_track]
+key = "CC75"
+
+[record_track]
+key = "CC77"
+led_note = 77    # Note number used to control this button's LED
+arm_time = "1s"  # Minimum time between arming and punch-in (e.g. "3s", "500ms"); omit for none
+
+[clear_all]
+key = "CC78"
+
+[tracks]
+# CC numbers for track selection pads, in order (index 0 = track 1, etc.)
+keys = ["CC16", "CC17", "CC18", "CC19", "CC20", "CC21", "CC22", "CC23"]
+
+[beats_per_measure]
+# modifier: CC<n>_CH<n> — the CC and MIDI channel (1-indexed) used as the shift key
+modifier = "CC17_CH1"
+key4  = "48"   # note number for 4-beat loop length
+key8  = "50"   # note number for 8-beat loop length
+key16 = "52"   # note number for 16-beat loop length
+
+[quantize]
+key = "CC74"
+
+[instruments]
+key = "CC24_CH1"
+
+[mute_track]
+key = "CC73"    # Change this to whichever free key you want on your controller
+
+[volume_knob]
+key = "CC25_CH1"
+
+[bpm_knob]
+key = "CC31_CH1"
+
+[drums]
+# Drum pad CC keys — must include channel to avoid conflict with knobs on CH1
+pads = [ "CC24_CH10", "CC25_CH10", "CC26_CH10", "CC27_CH10", "CC28_CH10", "CC29_CH10", "CC30_CH10", "CC31_CH10" ]
+
+[scene_down]
+key = "CC15_CH1"
+
+[scene_up]
+key = "CC16_CH1"
