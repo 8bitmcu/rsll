@@ -1,0 +1,44 @@
+name = "007 Frigate"
+bpm = 130
+metronome_on = false
+time_signature_numerator = 4
+time_signature_denominator = 4
+ppqn = 24  # Pulses Per Quarter Note (ticks per beat)
+max_tracking_beats = 16
+
+[tracks.1]
+name = "Synth bass"
+velocity = 127
+channel = 0
+length = "8/1"
+program = 52
+
+[tracks.2]
+name = "Synth hits"
+velocity = 127
+channel = 1
+length = 96
+program = 59
+
+[tracks.3]
+name = "Synth lead"
+velocity = 127
+channel = 2
+length = 96
+program = 49
+
+[tracks.4]
+name = "Synth 2nd"
+velocity = 127
+channel = 3
+length =384
+program = 63
+
+[drums]
+name = "Drums"
+velocity = 127
+notes = [ "36", "40" ] # Kick, Snare, Hat, etc.
+channel = 9 # MIDI Channel 10
+length = 192
+program = 58
+
